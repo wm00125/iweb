@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			div{
+				display:inline-block;
+				width: 200px;
+				height: 50px;
+				background: #3C3;
+			}
+			.box1{
+				position:static;/*所有元素的默认定位方式都是静态定位*/
+				top:0px;
+				left:0px;
+			}
+			.box2{
+				position:relative;
+				top:40px;
+				left: 40px;
+			}
+			.box3{
+				position:absolute;
+				top:20px;
+				left: 120px;
+			}
+			.box4{
+				position:fixed;
+				/*top:60px;
+				left: 200px;*/
+				right: 0;
+				bottom:0;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>定位方式1：静态定位/无定位</h1>
+		AA<div class="box1">BB1</div>CC
+		<h1>方式2：相对定位</h1>
+		AA<div class="box2">BB2</div>CC
+		<h1>方式3：绝对定位</h1>
+		AA
+		<div class="box3" style=" position:relative;bgcolor:#f00">
+			BB3
+			<div class="box33" style="bgcolor:#ff0">
+				BB33
+				<div class="box333" style=" position:absolute;left:100px;top:100px; bgcolor:#f0f>
+			BB333
+			</div>
+			CC
+		<h1>方式4：固定定位</h1>	
+	    AA<div class="box4">BB4</div>CC
+	</body>
+</html>
+

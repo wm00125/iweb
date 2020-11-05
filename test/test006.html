@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title></title>
+	<style>
+		div {
+			display: inline-block;
+			width: 200px;
+			height: 20px;
+			background: #20B2AA;
+		}
+		.box1 {
+			position: static;		/*所有元素的默认定位方式都是*/
+			top:0px;
+			left: 0px;
+		}
+		.box2 {
+			position: relative;
+			top: 0;
+			left: 0;
+		}
+		.box3 {
+			position: absolute;
+			top: 0px;
+			left: 0px;
+		}
+		.box4 {
+			position: fixed;
+			top: 0px;
+			left: 0px;
+			/*right: 0;*/
+			/* bottom: 0; */
+			
+		}
+	</style>
+</head>
+<body>
+	<h1>定位方式1：静态定位/无定位</h1>
+	AA<div class="box1">B1</div>CC
+	
+	<h1>定位方式2：相对定位</h1>
+	AA<div class="box2">B2</div>CC
+	
+	<h1>定位方式3：绝对定位</h1>
+	AA<div class="box3" style="background: #f00; position: relative;">
+		BB3
+		<div class="box33" style="background: #ff0; width: 99%;">
+			BB33
+			<div class="box333" style="position: relative;background: #f0f;">BB333</div>CC
+		</div>
+		</div>
+	
+	<h1>定位方式4：固定定位</h1>
+	AA<div class="box4">B4</div>CC
+</body>
+</html>
