@@ -56,7 +56,7 @@
 				padding-right: .6em;
 				vertical-align: middle;
 			}
-			.seadch >.fa-search {
+			.search >.fa-search {
 				background: #57BC4C;
 				color: #fff;
 				font-size: 2.2em;
@@ -74,16 +74,21 @@
 				margin-top: 6px;
 				margin-left: 20px;
 			}
-			.cart {
+			.cart {/*购物车下面没有下拉菜单的样式*/
 				float: right;
 				background: #F9F9F9;
 				border: 1px solid #ddd;
-				line-height: 34px;
+				line-height: 30px;
 				/* 修改光标样式 */
 				cursor: pointer;
 				position: relative;		/*只有定位了的元素才能使用z-index*/
 				z-index: 1;
+				
+			}
+			.cart.open{/*购物车下面有下拉菜单的样式*/
+				background: #fff;
 				border-bottom: none;
+				line-height: 31px;
 			}
 			.cart>.fa {
 				padding-left: 0.6em;
@@ -98,31 +103,48 @@
 				transform: rotate(180deg);
 			}
 			
-			.tiao {
+			.navbar {
 				width: 100%;
-				height: 45px;
-				color: #F9F9F9;
-				line-height: 45px;
+				height: 42px;
+				color: #fff;
+				line-height: 40px;
 				background: #57BC4C;
-				border-bottom: 1px solid #eee;
-				text-align: center;
-				font-size: 1.5em;
+				border-bottom: 2px solid #c1eebd;
+			
+				font-size: 1.2em; 
 			}
-			.cart-container > .dropdown {
+			.navbar .menu{
+				
+			}
+			.navbar  .menu li{
+				float: left;/*让原本的块级元素浮动起来*/
+				padding: 0 1.5em;/*表示上下为0，左右为1.5*/
+			}
+			.navbar .menu li:hover{
+				background: #4AAF3F;
+			}
+			.navbar .menu li a{/*使用复杂选择器具有更高的优先级*/
+				color:#fff;
+			}
+			.cart-container > .dropdown {/*下拉菜单不显示时的样式*/
 				position: absolute;
 				top: 34px;
 				right: 0;
 				border: 1px solid #ddd;
 				padding: 2em 3em;
 				width: 262px;
-				background: #fff;
+				background: #fff;/*div元素的背景色为白色*/
 				z-index: 1;
 				border-bottom-color: #fff;
+				display:none;/*不显示下拉菜单*/
+			}
+			.cart-container > .dropdown.open{/*下拉菜单不显示时的样式*/
+				display: block;
 			}
 		</style>
 </head>
 <body>
-	<!-- 顶部条 -->
+	<!-- 1楼：顶部条 -->
 	<div class="topbar">
 		<div class="container">
 			<a href="#">
@@ -142,7 +164,7 @@
 			</span>
 		</div>
 	</div>
-	<!-- 搜索条 -->
+	<!-- 2楼：搜索条 -->
 	<div class="searchbar">
 		<div class="container">
 			
@@ -150,15 +172,15 @@
 		<img src="img/logo.png" alt="iweb LOGO">
 		
 	<!-- 我的购物车 -->
-	<div class="cart-container">
+	<div class="cart-container" id="myCart">
 		<!-- 购物车：z-index要高于“下拉菜单” -->
-		<div class="cart" id="myCart">
+		<div class="cart " id="cart" >
 			<span class="fa fa-shopping-cart fa-lg"></span>
 			<span>我的购物车(<b>0</b>)</span>
-			<span class="fa fa-caret-down caret" id="caret"></span>
+			<span class="fa fa-caret-down caret caret-rotate" id="caret"></span>
 		</div>
 		<!-- 下拉菜单 -->
-		<div class="dropdown">
+		<div class="dropdown " id="dropdown ">
 			请登陆后查看你的购物车
 		</div>
 	</div>
@@ -169,16 +191,33 @@
 		</div>
 	</div>
 	</div>
-	<div class="tiao">
-		<a href="#">首页</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">全部课程</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">基础课程</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">进阶课程</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">核心课程</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">名师堂</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">校区</a>
+	<!-- 3楼：导航条 -->
+      <div class="navbar"></div>
+	<div class="container">
+		<!-- 左侧的功能菜单 -->
+		<ul class="menu">
+			<li><a href="index.html">首页</a></li>
+			<li><a href="course.html">全部课程</a></li>
+			<li><a href="course.html?tid=1">基础课程</a></li>
+			<li><a href="course.html?tid=2">核心课程</a></li>
+			<li><a href="course.html?tid=3">进阶课程</a></li>
+			<li><a href="teacher.html">名师堂</a></li>
+			<li><a href="school.html">校区</a></li>
+		</ul>
+	  <!-- 又侧的登录/注册菜单 -->
 	</div>
 	<script>
 		// 点击‘我的购物车’则后面的小三角开始旋转，离开则转回来
 		myCart.onmouseenter = ()=>{
 			caret.classList.add('caret-rotate')
+			cart.classList.add('open')
+			dropdown.classList.add('open')
 		}
 		myCart.onmouseleave = ()=>{
 			caret.classList.remove('caret-rotate')
+			cart.classList.remove('open')
+				dropdown.classList.remove('open')
+			
 		}
 	</script>
 </body>
